@@ -1,0 +1,14 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+arr1 = list(map(int, input().split()))
+arr2 = list(map(int, input().split()))
+
+def solution(n, arr1, arr2):
+  ans = []
+  for i, j in zip(arr1, arr2):
+    ans.append(bin(i | j)[2:].zfill(n).replace('1', '#').replace('0', ' '))
+  print(ans)
+
+solution(n, arr1, arr2)
