@@ -2,22 +2,26 @@ import sys
 from collections import deque
 
 input = sys.stdin.readline
+# 재귀 깊이 제한 설정
 sys.setrecursionlimit(10 ** 6)
 
 n, m, v = map(int, input().split())
 
 graph = [[] for _ in range(n+1)]
 
+# 그래프 그리기
 for _ in range(m):
-  v1, v2 = map(int, input().split())
-  graph[v1].append(v2)
-  graph[v2].append(v1)
+  a, b = map(int, input().split())
+  graph[a].append(b)
+  graph[b].append(a)
 
+# 정점 번호 정렬
 for i in range(n+1):
   graph[i].sort()
 
 def dfs(v):
-  visited[v] = True
+  # 정점 방문 처리
+  visited[v] = 1
   print(v, end = ' ')
 
   for i in graph[v]:
@@ -25,22 +29,23 @@ def dfs(v):
       dfs(i)
 
 def bfs(v):
-  queue = deque([v])
-  visited[v] = True
+  q = deque([v])
+  #정점 방문 처리
+  visited[v] = 1
 
-  while queue:
-    v = queue.popleft()
+  while q:
+    v = q.popleft()
     print(v, end = ' ')
 
     for i in graph[v]:
       if not visited[i]:
-        queue.append(i)
-        visited[i] = True
+        q.append(i)
+        visited[i] = 1
 
 
-visited = [False] * (n+1)
+visited = [0] * (n+1)
 dfs(v)
 
 print()
-visited = [False] * (n+1)
+visited = [0] * (n+1)
 bfs(v)
