@@ -14,10 +14,12 @@ else:
   min, max = 0, 0
   for num in s:
     if num < n:
-      min = num + 1
+      min = num
     elif num > n and max == 0:
-      max = num - 1
+      max = num
+  max -= 1
+  min += 1
 
   res = (n - min) * (max - n + 1) + (max - n)
 
-  print(res) 
+  print(res)
